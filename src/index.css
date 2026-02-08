@@ -1,0 +1,120 @@
+@import "tailwindcss";
+
+@theme {
+  --color-beige-100: #FAF0E6;
+  --color-beige-200: #F5E6D3;
+  --color-beige-300: #E8DCCA;
+
+  --color-pink-100: #FFF0F5;
+  --color-pink-200: #FFD1DC;
+  --color-pink-300: #FFB6C1;
+  --color-pink-400: #FF69B4;
+  --color-pink-500: #E91E63;
+
+  --color-rose-300: #DCAE96;
+  --color-rose-400: #F88379;
+  --color-rose-gold: #B76E79;
+
+  --color-red-800: #800020;
+  --color-brown-600: #8B4513;
+
+  --font-serif: "Playfair Display", serif;
+  --font-sans: "Montserrat", sans-serif;
+
+  --image-paper-texture: url('https://www.transparenttextures.com/patterns/cream-paper.png');
+  --image-gradient-romantic: linear-gradient(135deg, #FAF0E6 0%, #FFF0F5 100%);
+
+  --animate-float: float 6s ease-in-out infinite;
+  --animate-bloom: bloom 2s ease-out forwards;
+  --animate-confetti: confetti 4s ease-out forwards;
+
+  @keyframes float {
+
+    0%,
+    100% {
+      transform: translateY(0);
+    }
+
+    50% {
+      transform: translateY(-20px);
+    }
+  }
+
+  @keyframes bloom {
+    0% {
+      transform: scale(0);
+      opacity: 0;
+    }
+
+    100% {
+      transform: scale(1);
+      opacity: 1;
+    }
+  }
+
+  @keyframes confetti {
+    0% {
+      transform: translateY(0) rotate(0);
+      opacity: 1;
+    }
+
+    100% {
+      transform: translateY(100vh) rotate(720deg);
+      opacity: 0;
+    }
+  }
+}
+
+/* Custom Utilities that use the theme variables */
+@layer components {
+  .btn-primary {
+    @apply bg-gradient-to-r from-pink-400 to-rose-400 text-white px-8 py-3 rounded-full font-bold shadow-lg hover:scale-105 transition-transform duration-300;
+  }
+
+  .card-glass {
+    @apply bg-white/60 backdrop-blur-sm border border-white/50 rounded-2xl shadow-xl;
+  }
+
+  .locket-frame {
+    @apply rounded-full border-4 border-rose-gold shadow-lg overflow-hidden relative;
+  }
+
+  .polaroid-frame {
+    @apply bg-white p-3 pb-8 shadow-md transform rotate-1 border border-gray-200;
+  }
+}
+
+/* Base Styles */
+@layer base {
+  body {
+    @apply bg-beige-100 text-brown-600 font-sans antialiased;
+    background-image: linear-gradient(to bottom, #FAF0E6, #FFF0F5);
+  }
+
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    @apply font-serif text-red-800;
+  }
+}
+
+/* Scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--color-beige-100);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--color-rose-300);
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--color-rose-gold);
+}
