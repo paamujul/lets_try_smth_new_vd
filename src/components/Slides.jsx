@@ -99,38 +99,26 @@ export const Slide4 = () => {
     return (
         <div className="flex flex-col items-center justify-center h-full p-6 text-center">
             <motion.div
-                initial={{ opacity: 0 }}
-                animate={{ opacity: 1 }}
-                className="w-full max-w-6xl"
+                initial={{ opacity: 0, scale: 0.9, rotate: Math.random() * 4 - 2 }}
+                animate={{ opacity: 1, scale: 1 }}
+                transition={{ duration: 0.5 }}
+                className="max-w-4xl w-full bg-white p-4 md:p-8 shadow-2xl rotate-1 relative"
             >
-                <div className="bg-white/60 p-4 mb-8 inline-block shadow-lg -rotate-2">
-                    <h2 className="text-5xl md:text-7xl font-hand font-bold text-red-800 leading-none">
-                        <span className="text-7xl md:text-9xl font-paint text-pink-500 mr-4">2.</span>
-                        You won't be bored
-                    </h2>
-                </div>
+                {/* Tape Effect */}
+                <div className="absolute -top-4 left-1/2 -translate-x-1/2 w-32 h-8 bg-yellow-100/60 rotate-2 shadow-sm" />
 
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-8">
-                    <motion.div
-                        initial={{ x: -50, opacity: 0, rotate: -3 }}
-                        animate={{ x: 0, opacity: 1 }}
-                        transition={{ delay: 0.2 }}
-                        className="bg-white p-3 shadow-xl aspect-[3/4] rotate-[-3deg]"
-                    >
-                        <div className="w-full h-full overflow-hidden border-2 border-gray-100">
-                            <img src="/slides/slide_4_1.jpg" alt="Reason 2a" className="w-full h-full object-cover" />
-                        </div>
-                    </motion.div>
-                    <motion.div
-                        initial={{ x: 50, opacity: 0, rotate: 3 }}
-                        animate={{ x: 0, opacity: 1 }}
-                        transition={{ delay: 0.4 }}
-                        className="bg-white p-3 shadow-xl aspect-[3/4] rotate-[3deg]"
-                    >
-                        <div className="w-full h-full overflow-hidden border-2 border-gray-100">
-                            <img src="/slides/slide_4_2.png" alt="Reason 2b" className="w-full h-full object-cover" />
-                        </div>
-                    </motion.div>
+                <h2 className="text-4xl md:text-6xl font-hand font-bold text-red-800 mb-6 leading-none">
+                    <span className="text-6xl md:text-8xl font-paint text-pink-500 mr-4 block md:inline">2.</span>
+                    You won't be bored
+                </h2>
+
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                    <div className="w-full h-auto max-h-[30vh] md:max-h-[40vh] overflow-hidden border-2 border-gray-100 rounded-lg bg-gray-50 flex items-center justify-center shadow-md">
+                        <img src="/slides/slide_4_1.jpg" alt="Reason 2a" className="w-full h-full object-contain" />
+                    </div>
+                    <div className="w-full h-auto max-h-[30vh] md:max-h-[40vh] overflow-hidden border-2 border-gray-100 rounded-lg bg-gray-50 flex items-center justify-center shadow-md">
+                        <img src="/slides/slide_4_2.png" alt="Reason 2b" className="w-full h-full object-contain" />
+                    </div>
                 </div>
             </motion.div>
         </div>
@@ -142,38 +130,26 @@ export const Slide5 = () => {
     return (
         <div className="flex flex-col items-center justify-center h-full p-6 text-center">
             <motion.div
-                initial={{ opacity: 0 }}
-                animate={{ opacity: 1 }}
-                className="w-full max-w-6xl"
+                initial={{ opacity: 0, scale: 0.9, rotate: Math.random() * 4 - 2 }}
+                animate={{ opacity: 1, scale: 1 }}
+                transition={{ duration: 0.5 }}
+                className="max-w-4xl w-full bg-white p-4 md:p-8 shadow-2xl rotate-1 relative"
             >
-                <div className="bg-white/60 p-4 mb-8 inline-block shadow-lg -rotate-1">
-                    <h2 className="text-5xl md:text-7xl font-hand font-bold text-red-800 leading-none">
-                        <span className="text-7xl md:text-9xl font-paint text-pink-500 mr-4">3.</span>
-                        I will treat you with respect
-                    </h2>
-                </div>
+                {/* Tape Effect */}
+                <div className="absolute -top-4 left-1/2 -translate-x-1/2 w-32 h-8 bg-yellow-100/60 rotate-2 shadow-sm" />
 
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-8">
-                    <motion.div
-                        initial={{ x: -50, opacity: 0, rotate: 2 }}
-                        animate={{ x: 0, opacity: 1 }}
-                        transition={{ delay: 0.2 }}
-                        className="bg-white p-3 shadow-xl aspect-[3/4] rotate-[2deg]"
-                    >
-                        <div className="w-full h-full overflow-hidden border-2 border-gray-100">
-                            <img src="/slides/Slide_5_1.png" alt="Reason 3a" className="w-full h-full object-cover" />
-                        </div>
-                    </motion.div>
-                    <motion.div
-                        initial={{ x: 50, opacity: 0, rotate: -2 }}
-                        animate={{ x: 0, opacity: 1 }}
-                        transition={{ delay: 0.4 }}
-                        className="bg-white p-3 shadow-xl aspect-[3/4] rotate-[-2deg]"
-                    >
-                        <div className="w-full h-full overflow-hidden border-2 border-gray-100">
-                            <img src="/slides/Slide_5_2.png" alt="Reason 3b" className="w-full h-full object-cover" />
-                        </div>
-                    </motion.div>
+                <h2 className="text-4xl md:text-6xl font-hand font-bold text-red-800 mb-6 leading-none">
+                    <span className="text-6xl md:text-8xl font-paint text-pink-500 mr-4 block md:inline">3.</span>
+                    I will treat you with respect
+                </h2>
+
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                    <div className="w-full h-auto max-h-[30vh] md:max-h-[40vh] overflow-hidden border-2 border-gray-100 rounded-lg bg-gray-50 flex items-center justify-center shadow-md">
+                        <img src="/slides/Slide_5_1.png" alt="Reason 3a" className="w-full h-full object-contain" />
+                    </div>
+                    <div className="w-full h-auto max-h-[30vh] md:max-h-[40vh] overflow-hidden border-2 border-gray-100 rounded-lg bg-gray-50 flex items-center justify-center shadow-md">
+                        <img src="/slides/Slide_5_2.png" alt="Reason 3b" className="w-full h-full object-contain" />
+                    </div>
                 </div>
             </motion.div>
         </div>
