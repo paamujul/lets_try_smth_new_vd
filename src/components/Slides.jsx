@@ -104,7 +104,7 @@ export const Slide8 = () => {
     const [noStyle, setNoStyle] = useState({});
 
     const handleNoClick = () => {
-        if (noCount < 2) {
+        if (noCount < 4) {
             // Move button randomly
             const randomX = (Math.random() - 0.5) * 500; // -250 to 250
             const randomY = (Math.random() - 0.5) * 500;
@@ -163,8 +163,8 @@ export const Slide8 = () => {
 
                 <div className="flex gap-8 md:gap-16 justify-center items-center">
                     <motion.button
-                        animate={{ scale: 1 + (noCount * 0.4) }}
-                        whileHover={{ scale: 1.1 + (noCount * 0.4) }}
+                        animate={{ scale: 1 + (noCount * 0.6) }}
+                        whileHover={{ scale: 1.1 + (noCount * 0.6) }}
                         whileTap={{ scale: 0.95 }}
                         onClick={() => setDecision('yes')}
                         className="px-8 py-4 md:px-12 md:py-6 bg-green-500 text-white rounded-full text-3xl md:text-5xl font-paint shadow-xl hover:bg-green-600 transition-colors border-4 border-white"
