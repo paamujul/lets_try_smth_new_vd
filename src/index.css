@@ -65,6 +65,22 @@
   }
 }
 
+
+@layer utilities {
+  .font-hand {
+    font-family: 'Amatic SC', cursive;
+  }
+
+  .font-paint {
+    font-family: 'Permanent Marker', cursive;
+  }
+
+  .bg-kraft {
+    background-color: #dcbfa3;
+    background-image: url("https://www.transparenttextures.com/patterns/cardboard-flat.png");
+  }
+}
+
 /* Custom Utilities that use the theme variables */
 @layer components {
   .btn-primary {

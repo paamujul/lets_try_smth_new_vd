@@ -1,109 +1,119 @@
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import { AnimatePresence, motion } from 'framer-motion';
-import { Heart } from 'lucide-react';
-import Hero from './components/Hero';
-import Intro from './components/Intro';
-import FunFacts from './components/FunFacts';
-import WhyMe from './components/WhyMe';
-import Scheduler from './components/Scheduler';
-import FAQ from './components/FAQ';
+import { ChevronRight, ChevronLeft } from 'lucide-react';
+import { Slide1, Slide2, ReasonSlide, Slide4, Slide5, Slide8 } from './components/Slides';
 
 function App() {
-  const [currentStep, setCurrentStep] = useState(0);
-  const steps = [Intro, Hero, FunFacts, WhyMe, Scheduler];
+  const [currentSlide, setCurrentSlide] = useState(0);
 
-  // Background gradients for each step
-  const backgrounds = [
-    'bg-beige-100', // Intro
-    'bg-gradient-to-br from-beige-100 to-pink-100', // Hero
-    'bg-gradient-to-br from-pink-50 to-rose-100', // FunFacts
-    'bg-gradient-to-br from-rose-100 to-pink-200', // WhyMe
-    'bg-gradient-to-br from-white to-beige-200', // Scheduler
+  // Configuration for the 8 slides
+  const slides = [
+    <Slide1 />, // 0: Hi!
+    <Slide2 />, // 1: Question
+    <ReasonSlide number="1" title="I don't have a valentine this year" image="/slides/slide_3.jpg" />, // 2
+    <Slide4 />, // 3: Two images
+    <Slide5 />, // 4: Respect (Double Image)
+    <ReasonSlide number="4" title="I will listen to you yap" image="/slides/slide_6.jpg" />, // 5
+    <ReasonSlide number="5" title="I can shotgun beers with my thumb. No keys," image="/slides/slide_7.jpg" />, // 6
+    <ReasonSlide number="Bonus" title="I'll get you flowers" image="/slides/bonus.jpg" />, // 7
+    <Slide8 /> // 7: Decision
   ];
 
   const handleNext = () => {
-    if (currentStep < steps.length - 1) {
-      setCurrentStep(prev => prev + 1);
+    if (currentSlide < slides.length - 1) {
+      setCurrentSlide(prev => prev + 1);
     }
   };
 
   const handlePrev = () => {
-    if (currentStep > 0) {
-      setCurrentStep(prev => prev - 1);
+    if (currentSlide > 0) {
+      setCurrentSlide(prev => prev - 1);
     }
   };
 
-  // Auto-play logic for first 4 sections (Intro + 3 Content)
-  useEffect(() => {
-    if (currentStep < 4) {
-      const timer = setTimeout(() => {
-        handleNext();
-      }, currentStep === 0 ? 3000 : 7000); // 3s for Intro, 7s for others
-      return () => clearTimeout(timer);
+  // Swipe Logic
+  const [touchStart, setTouchStart] = useState(null);
+  const [touchEnd, setTouchEnd] = useState(null);
+
+  const minSwipeDistance = 50;
+
+  const onTouchStart = (e) => {
+    setTouchEnd(null);
+    setTouchStart(e.targetTouches[0].clientX);
+  };
+
+  const onTouchMove = (e) => {
+    setTouchEnd(e.targetTouches[0].clientX);
+  };
+
+  const onTouchEnd = () => {
+    if (!touchStart || !touchEnd) return;
+    const distance = touchStart - touchEnd;
+    const isLeftSwipe = distance > minSwipeDistance;
+    const isRightSwipe = distance < -minSwipeDistance;
+
+    if (isLeftSwipe) {
+      handleNext();
     }
-  }, [currentStep]);
-
-  // Keyboard navigation
-  useEffect(() => {
-    const handleKeyDown = (e) => {
-      if (e.key === 'ArrowRight') handleNext();
-      if (e.key === 'ArrowLeft') handlePrev();
-    };
-    window.addEventListener('keydown', handleKeyDown);
-    return () => window.removeEventListener('keydown', handleKeyDown);
-  }, [currentStep]);
-
-  const CurrentComponent = steps[currentStep];
+    if (isRightSwipe) {
+      handlePrev();
+    }
+  };
 
   return (
-    <div className={`min-h-screen relative overflow-hidden font-sans transition-colors duration-1000 ${backgrounds[currentStep]}`}>
+    <div
+      className="h-screen w-screen overflow-hidden bg-kraft relative font-hand"
+      onTouchStart={onTouchStart}
+      onTouchMove={onTouchMove}
+      onTouchEnd={onTouchEnd}
+    >
+      <div className="absolute inset-0 pointer-events-none opacity-10 bg-[url('https://www.transparenttextures.com/patterns/crinkled-paper.png')] mix-blend-multiply" />
 
-      {/* Navigation Click Areas (Left/Right) - Disabled on Scheduler for interaction */}
-      {currentStep < 4 && (
-        <div className="absolute inset-0 flex z-0">
-          <div className="w-1/3 h-full cursor-w-resize" onClick={handlePrev} />
-          <div className="w-2/3 h-full cursor-e-resize" onClick={handleNext} />
-        </div>
-      )}
-
-      {/* Render Current Section */}
       <AnimatePresence mode="wait">
         <motion.div
-          key={currentStep}
+          key={currentSlide}
           initial={{ opacity: 0, x: 100 }}
           animate={{ opacity: 1, x: 0 }}
           exit={{ opacity: 0, x: -100 }}
-          transition={{ duration: 0.5, ease: "easeInOut" }}
+          transition={{ duration: 0.5 }}
           className="h-full w-full"
         >
-          <CurrentComponent />
+          {slides[currentSlide]}
         </motion.div>
       </AnimatePresence>
 
-      <FAQ />
-
-      {/* Linked Hearts Progress Indicator */}
-      <div className="fixed bottom-8 left-0 w-full flex justify-center gap-4 z-40 pointer-events-none">
-        {steps.map((_, index) => (
-          <motion.div
-            key={index}
-            initial={{ scale: 1 }}
-            animate={{
-              scale: index === currentStep ? 1.2 : 1,
-              opacity: Math.abs(currentStep - index) > 1 ? 0.5 : 1
-            }}
-            className="flex items-center"
+      {/* Navigation Controls */}
+      <div className="absolute inset-0 pointer-events-none flex items-center justify-between px-4">
+        {currentSlide > 0 && (
+          <button
+            onClick={handlePrev}
+            className="pointer-events-auto p-2 bg-black/10 hover:bg-black/20 rounded-full text-black/50 transition-colors"
           >
-            <Heart
-              className={`w-6 h-6 transition-colors duration-300 ${index <= currentStep ? 'fill-rose-gold text-rose-gold' : 'text-rose-300'
-                }`}
-            />
-            {/* Link Line */}
-            {index < steps.length - 1 && (
-              <div className={`w-8 h-0.5 mx-1 transition-colors duration-300 ${index < currentStep ? 'bg-rose-gold' : 'bg-rose-200'
-                }`} />
-            )}
-          </motion.div>
+            <ChevronLeft size={32} />
+          </button>
+        )}
+
+        {currentSlide < slides.length - 1 && (
+          <div className="flex-1" /> // Spacer
+        )}
+
+        {currentSlide < slides.length - 1 && (
+          <button
+            onClick={handleNext}
+            className="pointer-events-auto p-2 bg-black/10 hover:bg-black/20 rounded-full text-black/50 transition-colors"
+          >
+            <ChevronRight size={32} />
+          </button>
+        )}
+      </div>
+
+      {/* Progress Dots */}
+      <div className="absolute bottom-6 left-0 right-0 flex justify-center gap-2">
+        {slides.map((_, idx) => (
+          <div
+            key={idx}
+            className={`w-2 h-2 rounded-full transition-colors ${idx === currentSlide ? 'bg-rose-500' : 'bg-gray-300'}`}
+          />
         ))}
       </div>
 

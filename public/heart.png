@@ -1,0 +1,24 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 400">
+  <!-- Background circle in beige -->
+  <circle cx="200" cy="200" r="180" fill="#E8D5C4"/>
+  
+  <!-- Heart shape in red -->
+  <path d="M200 280 C200 280 140 230 120 190 C100 150 110 120 140 120 C160 120 180 130 200 150 C220 130 240 120 260 120 C290 120 300 150 280 190 C260 230 200 280 200 280 Z" 
+        fill="#D32F2F" 
+        stroke="#B71C1C" 
+        stroke-width="2"/>
+  
+  <!-- Decorative sparkles in beige (darker shade) -->
+  <circle cx="140" cy="160" r="4" fill="#D4BC9F"/>
+  <circle cx="260" cy="160" r="4" fill="#D4BC9F"/>
+  <circle cx="200" cy="130" r="3" fill="#D4BC9F"/>
+  
+  <!-- Small hearts accent in red (lighter shade) -->
+  <path d="M310 150 C310 150 295 140 290 135 C285 130 287 125 292 125 C295 125 298 127 300 130 C302 127 305 125 308 125 C313 125 315 130 310 135 C305 140 300 150 300 150 Z" 
+        fill="#EF5350" 
+        opacity="0.8"/>
+  
+  <path d="M110 240 C110 240 95 230 90 225 C85 220 87 215 92 215 C95 215 98 217 100 220 C102 217 105 215 108 215 C113 215 115 220 110 225 C105 230 100 240 100 240 Z" 
+        fill="#EF5350" 
+        opacity="0.8"/>
+</svg>
