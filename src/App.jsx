@@ -11,8 +11,8 @@ function App() {
     <Slide1 />, // 0: Hi!
     <Slide2 />, // 1: Question
     <ReasonSlide number="1" title="I don't have a valentine this year" image="/slides/slide_3.jpg" />, // 2
-    <Slide4 />, // 3: Two images
-    <Slide5 />, // 4: Respect (Double Image)
+    <ReasonSlide number="2" title="You won't be bored" image="/slides/slide_4_1.jpg" />, // 3
+    <ReasonSlide number="3" title="I will treat you with respect" image="/slides/Slide_5_1.png" />, // 4
     <ReasonSlide number="4" title="I will listen to you yap" image="/slides/slide_6.jpg" />, // 5
     <ReasonSlide number="5" title="I can shotgun beers with my thumb. No keys," image="/slides/slide_7.jpg" />, // 6
     <ReasonSlide number="Bonus" title="I'll get you flowers" image="/slides/bonus.jpg" />, // 7

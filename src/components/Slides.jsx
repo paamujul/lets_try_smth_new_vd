@@ -202,16 +202,23 @@ export const Slide8 = () => {
     }
 
     return (
-        <div className="flex flex-col items-center justify-center h-full p-4 text-center relative">
-            {/* Slide 8 Image - Shown initially as requested */}
-            <div className="absolute inset-0 z-0 opacity-20 md:opacity-100 md:static md:h-[50vh] md:mb-8 flex justify-center">
-                <img src="/slides/slide_8_1.jpg" alt="Ask" className="h-full object-contain drop-shadow-xl -rotate-2 border-8 border-white bg-white" />
-            </div>
+        <div className="flex flex-col items-center justify-center h-full p-6 text-center">
+            <motion.div
+                initial={{ opacity: 0, scale: 0.9 }}
+                animate={{ opacity: 1, scale: 1 }}
+                transition={{ duration: 0.5 }}
+                className="max-w-4xl w-full bg-white p-4 md:p-8 shadow-2xl rotate-1 relative"
+            >
+                {/* Tape Effect */}
+                <div className="absolute -top-4 left-1/2 -translate-x-1/2 w-32 h-8 bg-yellow-100/60 rotate-2 shadow-sm" />
 
-            <div className="z-10 bg-white/90 p-6 md:p-10 rounded-2xl shadow-xl backdrop-blur-sm">
-                <h2 className="text-5xl md:text-8xl font-hand font-bold text-red-800 mb-8 leading-none">
+                <h2 className="text-5xl md:text-8xl font-hand font-bold text-red-800 mb-6 leading-none">
                     So... what do you say? 🥺
                 </h2>
+
+                <div className="w-full max-h-[40vh] overflow-hidden border-4 border-gray-100 bg-gray-50 flex items-center justify-center mb-8 rounded-lg">
+                    <img src="/slides/slide_8_1.jpg" alt="Ask" className="w-full h-full object-contain" />
+                </div>
 
                 <div className="flex gap-8 md:gap-16 justify-center items-center">
                     <motion.button
@@ -234,7 +241,7 @@ export const Slide8 = () => {
                         NO
                     </motion.button>
                 </div>
-            </div>
+            </motion.div>
         </div>
     );
 };
